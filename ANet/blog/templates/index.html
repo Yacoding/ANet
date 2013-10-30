@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>Blog</title>
+</head>
+<body>
+	<div><p>欢迎,<a href="/userinfo/">{{ username }}</a>!   <a href="/logout/">注销</a></p></div>
+	<div width="50%">
+			<h1>博客文章列表</h1>
+			{% for post in posts %}
+				<p>作者:{{ post.author }} 发表日期:{{ post.post_time }} 修改日期:{{ post.update_time }}</p>
+				<h2>{{ post.title }}</h2>
+				<p>{{ post.content }}</p>
+				<hr />
+			{% endfor %}
+	</div>	
+</body>
+</html>

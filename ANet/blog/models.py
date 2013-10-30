@@ -11,3 +11,8 @@ class Posts(models.Model):
 	update_time = models.DateTimeField(auto_now=True)
 	author = models.ForeignKey(User)
 
+	def __unicode__(self):
+		return self.title
+
+	class Meta():
+		ordering = ['-post_time']
