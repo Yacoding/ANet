@@ -12,8 +12,8 @@ class regForm(forms.Form):
 
 '''注册用户信息'''
 class userInfoForm(forms.Form):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput)
+	#username = forms.CharField()
+	#password = forms.CharField(widget=forms.PasswordInput)
 	first_name = forms.CharField()
 	last_name = forms.CharField()
 	email = forms.EmailField()
@@ -40,7 +40,7 @@ def register(request):
 
 '''注册用户完善个人信息'''
 def userinfo(request):
-	if request.method = "POST":
+	if request.method == "POST":
 		uif = userInfoForm(request.POST)
 		username = request.session.get('username', '')
 		if uif.is_valid():
@@ -50,10 +50,16 @@ def userinfo(request):
 			last_name = uif.cleaned_data['last_name']
 			email = uif.cleaned_data['email']
 
-			user = User.objects.all().filter(username__exact==username)
-			user.first_name = first_name
-			user.last_name = last_name
-			user.email = email
+			user = User.objects.all().filter(username__exact=username)
+			user.update(first_name=first_name, last_name=last_name, email=email)
+
+			return HttpResponse('用户信息更新完成')
+	else:
+		username = request.session.get('username', '')
+		uif = userInfoForm()
+		#uif.username = username
+
+	return render_to_response('userinfo.html', {'uif': uif,'username': username})
 
 
 '''blog首页处理'''
@@ -62,3 +68,7 @@ def index(request):
 	username = request.session.get('username', u'路人甲')
 
 	return render_to_response('index.html', {'posts': posts,'username':username})
+
+def logout(request):
+	del request.session['username']
+	return HttpResponseRedirect('/register/')
