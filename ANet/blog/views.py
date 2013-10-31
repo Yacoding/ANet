@@ -7,16 +7,16 @@ from django.contrib.auth.models import User
 
 '''自定义注册表单'''
 class regForm(forms.Form):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput)
+	username = forms.CharField(label=u'用户名')
+	password = forms.CharField(widget=forms.PasswordInput, label=u'密码')
 
 '''注册用户信息'''
 class userInfoForm(forms.Form):
 	#username = forms.CharField()
 	#password = forms.CharField(widget=forms.PasswordInput)
-	first_name = forms.CharField()
-	last_name = forms.CharField()
-	email = forms.EmailField()
+	first_name = forms.CharField(required=False,label=u'姓氏')
+	last_name = forms.CharField(required=False, label=u'名称')
+	email = forms.EmailField(required=False, label=u'邮件')
 
 
 '''注册页面'''
@@ -53,7 +53,7 @@ def userinfo(request):
 			user = User.objects.all().filter(username__exact=username)
 			user.update(first_name=first_name, last_name=last_name, email=email)
 
-			return HttpResponse('用户信息更新完成')
+			return HttpResponse(u'用户信息更新完成')
 	else:
 		username = request.session.get('username', '')
 		uif = userInfoForm()
@@ -63,11 +63,13 @@ def userinfo(request):
 
 
 '''blog首页处理'''
-def index(request):
+def blog(request):
+	username_boolean = False
 	posts = Posts.objects.all()
 	username = request.session.get('username', u'路人甲')
-
-	return render_to_response('index.html', {'posts': posts,'username':username})
+	if username == u'路人甲':
+		username_boolean = True
+	return render_to_response('index.html', {'posts': posts,'username':username,'username_boolean': username_boolean})
 
 def logout(request):
 	del request.session['username']
