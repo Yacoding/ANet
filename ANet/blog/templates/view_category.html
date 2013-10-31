@@ -7,11 +7,11 @@
 		{% if posts %}
 			<ul>
 				{% for post in posts %}
-				<li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+				<li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>({{ post.post_time }})</li>
 				{% endfor %}
 			</ul>
 		{% else %}
-			<p>There are no posts.</p>
+			<p>没有文章显示</p>
 		{% endif %}
 	</div>	
 </body>
