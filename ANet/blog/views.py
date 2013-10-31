@@ -1,8 +1,8 @@
 #-*-coding:utf8-*-
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django import forms
-from blog.models import Posts
+from blog.models import Posts, Category
 from django.contrib.auth.models import User
 
 '''自定义注册表单'''
@@ -65,12 +65,26 @@ def userinfo(request):
 '''blog首页处理'''
 def blog(request):
 	username_boolean = False
-	posts = Posts.objects.all()
+
+	posts = Posts.objects.all()[:5]
+	categories = Category.objects.all()
+
 	username = request.session.get('username', u'路人甲')
 	if username == u'路人甲':
 		username_boolean = True
-	return render_to_response('index.html', {'posts': posts,'username':username,'username_boolean': username_boolean})
 
+	return render_to_response('index.html', {'posts': posts,'categories': categories,'username':username,'username_boolean': username_boolean})
+
+'''删除session会话'''
 def logout(request):
 	del request.session['username']
 	return HttpResponseRedirect('/register/')
+
+
+def view_post(request, slug):
+	return render_to_response('view_post.html',{'post': get_object_or_404(Posts, slug=slug)})
+
+def view_category(request, slug):
+	categories = get_object_or_404(Category, slug=slug)
+	return render_to_response('view_category.html',{'categories':categories, 'posts':Posts.objects.filter(category=categories)[:5]})
+
