@@ -1,9 +1,6 @@
-<html>
-<head>
-	<title>{{ category.title }}</title>
-</head>
-<body>
-	<div width="50%">
+{% extends 'base.html' %}
+{% block content %}
+	<div>
 		{% if posts %}
 			<ul>
 				{% for post in posts %}
@@ -14,5 +11,4 @@
 			<p>没有文章显示</p>
 		{% endif %}
 	</div>	
-</body>
-</html>
+{% endblock %}

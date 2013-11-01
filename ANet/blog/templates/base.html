@@ -1,17 +1,17 @@
 <html>
     <head>
-        <title>{% block head_title %}Welcome to my blog{% endblock %}</title>
+        <title>{% block head_title %}欢迎进入招风草博客{% endblock %}</title>
         <link href="/site_medias/style/baseline.base.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         {% block navi %}
             <div class="center">
-                <p>招风草</p>
-                <p><a href="/blog/">首页</a> / <a href="/文章列表/">文章</a> / <a href="/categoies/">分类</a> / <a href="/about/">About</a>
+                <h1>招风草</h1>
+                <p><a href="/blog/">首页</a> / <a href="/blog/view/">文章</a> / <a href="/blog/categoies/">分类</a> / <a href="/about/">About</a> / <a href="/admin/">管理</a></p>
             </div>
         {% endblock %}
     	{% block user_info %}{% endblock %}
-        <h2>{% block title %}Welcome to my block{% endblock %}</h2>
+        <h2>{% block title %}给生活加点料{% endblock %}</h2>
         {% block content %}
 
         {% endblock %}

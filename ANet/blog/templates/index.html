@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block head_title %}欢迎进入我的博客{% endblock %}
 	{% block user_info %}
-	<div><p>欢迎,
+	<div class="userinfo"><p>欢迎你,
 		{% if username_boolean %}
 			{{username}}  <a href="/register/">注册用户</a>
 		{% else %}
@@ -9,7 +9,7 @@
 		{% endif %}
 	</p></div>
 	{% endblock %}
-	{% block title %}<h1>博客文章列表</h1>{% endblock %}
+	{% block title %}<div class="center"><h2>博客文章列表</h2></div>{% endblock %}
 	{% block content %}
 	<div width="50%">
 			<h2>Categories</h2>
@@ -23,8 +23,8 @@
 			{% endif %}
 			{% if posts %}
 				{% for post in posts %}
-				<p>作者:{{ post.author }} 发表日期:{{ post.post_time }} 修改日期:{{ post.update_time }}</p>
 				<h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+				<p class="post-info">作者:{{ post.author }} 发表日期:{{ post.post_time }} 修改日期:{{ post.update_time }} 分类:{{post.category }}</p>
 				<p>{{ post.excerpt }}</p>
 				<hr />
 				{% endfor %}
