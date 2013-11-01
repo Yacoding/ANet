@@ -1,13 +1,11 @@
-<html>
-<head>
-	<title>用户注册</title>
-</head>
-<body>
-	<div width="50%">
+{% extends 'base.html' %}
+{% block head_title %}注册博客用户{% endblock %}
+{% block title%}<div class="center">注册一个用户吧</div>{% endblock %}
+{% block content%}
+	<div class="center">
 		<form method="POST">
 			{{ rf.as_p }}
 			<input type="submit" value="提交" />
 		</form>
 	</div>	
-</body>
-</html>
+{% endblock %}
