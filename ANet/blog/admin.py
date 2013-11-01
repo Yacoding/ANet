@@ -8,7 +8,6 @@ class PostsAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',)}
 
 
-
 class CategoryAdmin(admin.ModelAdmin):
 	fields = ['title','slug']
 	list_display = ('title','slug')

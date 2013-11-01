@@ -1,7 +1,7 @@
 #-*-coding:utf8-*-
 from django.db import models
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
+from tinymce.models import HTMLField
 
 '''文章分类模块'''
 class Category(models.Model):
@@ -17,7 +17,8 @@ class Category(models.Model):
 
 
 class Posts(models.Model):
-	content = models.TextField()
+	#content = models.TextField()
+	content = HTMLField()
 	excerpt = models.TextField()
 	title   = models.CharField(max_length=100)
 	public_status = models.BooleanField()
