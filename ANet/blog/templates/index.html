@@ -14,7 +14,7 @@
 			{% if posts %}
 				{% for post in posts %}
 				<h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-				<p class="post-info">作者:{{ post.author }} 发表日期:{{ post.post_time }} 修改日期:{{ post.update_time }} 分类:{{post.category }}</p>
+				<p class="post-info">作者:{{ post.author }} 发表日期:{{ post.post_time | date:"Y年m月d日 H时i分"}} 修改日期:{{ post.update_time | date:"Y年m月d日 H时i分" }} 分类:{{post.category }}</p>
 				<p>{{ post.excerpt }}</p>
 				<hr />
 				{% endfor %}
@@ -32,7 +32,6 @@
 			{% else %}
 				<p>没有分类可以显示</p>
 			{% endif %}
-	</div>	
 	{% endblock %}
 </body>
 </html>

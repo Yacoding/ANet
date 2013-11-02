@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block main-content %}
 	<div>
 		{% if posts %}
 			<ul>
 				{% for post in posts %}
-				<li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>({{ post.post_time }})</li>
+				<li><a href="{{ post.get_absolute_url }}">{{ post.title}}</a>({{ post.post_time | date:"Y年m月d日 H时i分" }})</li>
 				{% endfor %}
 			</ul>
 		{% else %}
