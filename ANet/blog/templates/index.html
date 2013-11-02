@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block head_title %}欢迎进入我的博客{% endblock %}
+{% block head_title %}欢迎进入招风草博客{% endblock %}
 	{% block user_info %}
 	<div class="userinfo"><p>欢迎你,
 		{% if username_boolean %}
@@ -10,17 +10,7 @@
 	</p></div>
 	{% endblock %}
 	{% block title %}<div class="center"><h2>博客文章列表</h2></div>{% endblock %}
-	{% block content %}
-	<div width="50%">
-			<h2>Categories</h2>
-			{% if categories %}
-				<ul>
-					{% for category in categories %}
-					<li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
-					{% endfor %}
-			{% else %}
-				<p>没有分类可以显示</p>
-			{% endif %}
+	{% block main-content %}
 			{% if posts %}
 				{% for post in posts %}
 				<h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
@@ -30,6 +20,17 @@
 				{% endfor %}
 			{% else %}
 				<p>没有文章可以显示了</p>
+			{% endif %}
+	{% endblock %}
+	{% block sidebar %}
+			<h2>Categories</h2>
+			{% if categories %}
+				<ul>
+					{% for category in categories %}
+					<li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+					{% endfor %}
+			{% else %}
+				<p>没有分类可以显示</p>
 			{% endif %}
 	</div>	
 	{% endblock %}

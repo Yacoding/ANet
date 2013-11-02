@@ -6,7 +6,7 @@ version 0.5.2
 */
 
 /******************** Base ********************/
-body											{ font-family: helvetica, arial, sans-serif; line-height: 1.5; background: white; color: black; }
+body											{ font-family: helvetica, arial, sans-serif; line-height: 1.5; background: white; color: black; text-align: center; }
 h1, h2, h3, h4, h5, h6							{ line-height: 1.2; }
 h4, h5, h6										{ font-weight: bold; }
 b, strong, caption, th, thead, dt, legend		{ font-weight: bold; }
@@ -35,6 +35,45 @@ ol												{ list-style: decimal outside; }
 input, select, button							{ cursor: pointer; }
 table											{ font: inherit; width: 100%; }
 
+* { padding: 0; margin: 0;}
+.container:after,.container:before {content: ""; display: table; }
+.container:after { clear: both; overflow: hidden; }
+.container { width: 960px; margin: 0 auto; text-align: left; zoom: 1; }
+#header {
+  background: #b1b1b1;/*header全屏背景色设置*/
+  color: #fff;
+  margin-bottom: 15px; /*顶部与主内容垂直间距，可自行修改*/
+}
+.sidebar {
+  width: 220px; /*左边栏宽度，可自行修改*/
+  float: left;/*侧栏居左*/
+}
+.main-content {
+  width: 720px; /*主内容宽度*/
+  float: right;/*主内容居右*/
+}
+#footer {
+  background: #b1b1b1;/*footer全屏背景色设置*/
+  color: #fff;
+}
+/*测试样式，可自行修改*/
+#header .container {
+  height: 75px;
+}
+.sidebar {
+  height: 350px;
+  background-color: #E7DBD5;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.main-content {
+  background-color: #F2F2E6;
+  height: 350px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+#footer .container {
+  margin-top: 15px;
+} 
+
 /* html 5 */
 article, aside, header, hgroup,
 nav, figure, section, footer					{ display: block; }
@@ -49,3 +88,6 @@ a:visited 										{ text-decoration: none; color: green; }
 /* Debug */
 .debug											{ outline: solid gold 1px; }
 .debug-background								{ background: rgba(255, 215, 0, 0.2) !important; }
+
+.content-left									{ float: left; border: 1px solid; height: 100%; _display: inline;}
+.content-right									{ float: right; border: 1px solid; height: 100%; _display: inline;}

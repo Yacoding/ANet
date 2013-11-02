@@ -4,16 +4,38 @@
         <link href="/site_medias/style/baseline.base.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        {% block navi %}
-            <div class="center">
-                <h1>招风草</h1>
-                <p><a href="/blog/">首页</a> / <a href="/blog/view/">文章</a> / <a href="/blog/categoies/">分类</a> / <a href="/about/">About</a> / <a href="/admin/">管理</a></p>
+        {% block header %}
+        <div id="header">
+            <div class="container">
+                <div class="header">
+                    <h1>招风草</h1>
+                    <p><a href="/blog/">首页</a> / <a href="/blog/view/">文章</a> / <a href="/blog/categoies/">分类</a> / <a href="/about/">About</a> / <a href="/admin/">管理</a></p>
+                </div>
             </div>
+        </div>
         {% endblock %}
-    	{% block user_info %}{% endblock %}
-        <h2>{% block title %}给生活加点料{% endblock %}</h2>
-        {% block content %}
+        <div id="page">
+            <div class="container">
+                <div class="main-content">
+    	       {% block user_info %}{% endblock %}
+                <h2>{% block title %}给生活加点料{% endblock %}</h2>
+                {% block main-content %}
 
-        {% endblock %}
+                {% endblock %}
+                </div>
+                <div class="aside sidebar">
+                    {% block sidebar %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="container">
+                {% block footer %}
+
+                {% endblock %}
+            </div>
+        </div>
     </body>
 </html>
