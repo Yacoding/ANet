@@ -49,3 +49,6 @@ class Comments(models.Model):
 
 	def __unicode__(self):
 		return u"%s: %s" %(self.author, self.body[:60])
+
+	class Meta():
+		ordering = ['-created_time']

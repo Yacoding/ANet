@@ -2,7 +2,7 @@
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django import forms
-from blog.models import Posts, Category
+from blog.models import Posts, Category, Comments
 from django.contrib.auth.models import User
 
 '''自定义注册表单'''
@@ -10,7 +10,7 @@ class regForm(forms.Form):
 	username = forms.CharField(label=u'用户名')
 	password = forms.CharField(widget=forms.PasswordInput, label=u'密码')
 
-'''注册用户信息'''
+'''用户信息表单'''
 class userInfoForm(forms.Form):
 	#username = forms.CharField()
 	#password = forms.CharField(widget=forms.PasswordInput)
@@ -18,6 +18,10 @@ class userInfoForm(forms.Form):
 	last_name = forms.CharField(required=False, label=u'名称')
 	email = forms.EmailField(required=False, label=u'邮件')
 
+'''评论表单'''
+class commentForm(forms.Form):
+	username = forms.CharField(label=u'用户名称', required=False)
+	content = forms.CharField(widget=forms.Textarea, label=u'评论内容')
 
 '''注册页面'''
 def register(request):
@@ -82,7 +86,20 @@ def logout(request):
 
 
 def view_post(request, slug):
-	return render_to_response('view_post.html',{'post': get_object_or_404(Posts, slug=slug)})
+	post = Posts.objects.get(slug = slug)
+	comments = Comments.objects.filter(post_id__exact = post.id)
+
+	if request.method=="POST":
+		cf = commentForm(request.POST)
+		if cf.is_valid():
+			username = cf.cleaned_data['username']
+			content = cf.cleaned_data['content']
+			Comments.objects.create(author=username, body=content, post_id=post.id)
+			return HttpResponseRedirect('/blog/view/%s.html'% post.slug)
+	else:
+		cf = commentForm()
+
+	return render_to_response('view_post.html',{'post': get_object_or_404(Posts, slug=slug), 'comments': comments,'cf': cf })
 
 def view_category(request, slug):
 	categories = get_object_or_404(Category, slug=slug)
