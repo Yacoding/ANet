@@ -15,7 +15,7 @@ class Category(models.Model):
 	def get_absolute_url(self):
 		return('view_blog_category', None, {'slug':self.slug})
 
-
+'''文章内容'''
 class Posts(models.Model):
 	#content = models.TextField()
 	content = HTMLField()
@@ -40,4 +40,12 @@ class Posts(models.Model):
 		return ('view_blog_post', None, {'slug':self.slug})
 
 
+'''文章评论模块'''
+class Comments(models.Model):
+	author = models.CharField(max_length=100, blank=True)
+	body = HTMLField()
+	post = models.ForeignKey(Posts)
+	created_time = models.DateTimeField(auto_now_add=True)
 
+	def __unicode__(self):
+		return u"%s: %s" %(self.author, self.body[:60])
