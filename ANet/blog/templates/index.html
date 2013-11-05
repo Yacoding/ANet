@@ -16,7 +16,7 @@
 				{% if post.public_status %}
 				<h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
 				<p class="post-info">作者:{{ post.author }} 发表日期:{{ post.post_time | date:"Y年m月d日 H时i分"}} 修改日期:{{ post.update_time | date:"Y年m月d日 H时i分" }} 分类:{{post.category }}</p>
-				<p>{{ post.excerpt }}</p>
+				<p>{% autoescape off %}{{ post.content|truncatewords_html:10 }}{% endautoescape %}</p>
 				<hr />
 				{% endif %}
 				{% endfor %}
