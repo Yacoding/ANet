@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django import forms
 from blog.models import Posts, Category, Comments
 from django.contrib.auth.models import User
+from blog.function import random_words
 
 '''自定义注册表单'''
 class regForm(forms.Form):
@@ -72,12 +73,15 @@ def blog(request):
 
 	posts = Posts.objects.all()[:5]
 	categories = Category.objects.all()
+	words = random_words('random_words.txt')
 
 	username = request.session.get('username', u'路人甲')
 	if username == u'路人甲':
 		username_boolean = True
 
-	return render_to_response('index.html', {'posts': posts,'categories': categories,'username':username,'username_boolean': username_boolean})
+	return render_to_response('index.html', {'posts': posts,'categories': categories,
+		'username':username,'username_boolean': username_boolean,
+		'random_words': words })
 
 '''删除session会话'''
 def logout(request):

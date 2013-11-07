@@ -9,7 +9,7 @@
 		{% endif %}
 	</p></div>
 	{% endblock %}
-	{% block title %}<div class="center"><h2>博客文章列表</h2></div>{% endblock %}
+	{% block title %}<p>{{ random_words }}</p>{% endblock %}
 	{% block main-content %}
 			{% if posts %}
 				{% for post in posts %}
