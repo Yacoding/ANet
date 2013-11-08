@@ -73,7 +73,7 @@ def blog(request):
 
 	posts = Posts.objects.all()[:5]
 	categories = Category.objects.all()
-	words = random_words('random_words.txt')
+	words = random_words('blog/random_words.txt')
 
 	username = request.session.get('username', u'路人甲')
 	if username == u'路人甲':
