@@ -7,6 +7,7 @@ def random_words(filename):
 	number_of_line = len(fp.readlines())
 	lineno = random.randint(1, number_of_line)
 	words = linecache.getline(filename, lineno)
+	fp.close()
 	return words
 
 
