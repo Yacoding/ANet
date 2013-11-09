@@ -1,5 +1,7 @@
 # Django settings for ANet project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -73,6 +75,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #'blog/static'
+    os.path.join(os.path.dirname(__file__),'../static/').replace('\\','/'),
 )
 
 # List of finder classes that know how to find static files in

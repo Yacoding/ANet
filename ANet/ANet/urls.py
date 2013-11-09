@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 import ANet
+import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -15,7 +16,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^site_medias/(?P<path>.*)$','django.views.static.serve',{'document_root':ANet.settings.STATICFILES_DIRS, 'show_indexes': True}),
+    #url(r'^site_medias/(?P<path>.*)$','django.views.static.serve',{'document_root':ANet.settings.STATICFILES_DIRS,'show_indexes': True}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root':settings.STATIC_ROOT,'show_indexes': True}),
     url(r'^register/$', 'blog.views.register'),
     url(r'^blog/$', 'blog.views.blog'),
     url(r'^userinfo/$', 'blog.views.userinfo'),
