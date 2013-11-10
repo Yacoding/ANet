@@ -15,7 +15,7 @@
 				{% for post in posts %}
 				{% if post.public_status %}
 				<h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-				<p class="post-info">作者:{{ post.author }} 发表日期:{{ post.post_time | date:"Y年m月d日 H时i分"}} 修改日期:{{ post.update_time | date:"Y年m月d日 H时i分" }} 分类:{{post.category }}</p>
+				<p class="post-info">作者:{{ post.author }} 发表日期:{{ post.post_time | date:"Y年m月d日 H时i分"}} 修改日期:{{ post.update_time | date:"Y年m月d日 H时i分" }} 分类:{{ post.category }}</p>
 				<p>{% autoescape off %}{{ post.content|truncatewords_html:10 }}{% endautoescape %}</p>
 				<hr />
 				{% endif %}
@@ -29,7 +29,7 @@
 			{% if categories %}
 				<ul>
 					{% for category in categories %}
-					<li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+					<li><img src="{{ catetory.cat_img.url }}" /><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
 					{% endfor %}
 			{% else %}
 				<p>没有分类可以显示</p>

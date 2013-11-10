@@ -7,9 +7,13 @@ from tinymce.models import HTMLField
 class Category(models.Model):
 	title = models.CharField(max_length=100)
 	slug = models.SlugField(max_length=100)
+	cat_img = models.ImageField(upload_to="category_icon", blank=True, null=True)
 
 	def __unicode__(self):
 		return self.title
+
+	def image_(self):
+		return self.cat_img.url
 
 	@models.permalink
 	def get_absolute_url(self):
@@ -19,8 +23,9 @@ class Category(models.Model):
 class Posts(models.Model):
 	#content = models.TextField()
 	content = HTMLField()
-	excerpt = models.TextField()
+	excerpt = HTMLField()
 	title   = models.CharField(max_length=100)
+	#post_image = models.HTMLField(upload_to='article_images/%Y/%m/%d')
 	public_status = models.BooleanField()
 	comment_status = models.BooleanField()
 	post_time = models.DateTimeField(auto_now_add=True)

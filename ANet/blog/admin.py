@@ -9,8 +9,8 @@ class PostsAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-	fields = ['title','slug']
-	list_display = ('title','slug')
+	fields = ['title','slug','cat_img']
+	list_display = ('title','slug','cat_img')
 	prepopulated_fields = {'slug': ('title',)}
 
 
