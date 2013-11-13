@@ -29,7 +29,7 @@
 			{% if categories %}
 				<ul>
 					{% for category in categories %}
-					<li><img src="./images/{{ category.cat_img.url }}" /><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+					<li><img src="http://localhost:8000/blog/images/{{ category.cat_img.url }}" /><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
 					{% endfor %}
 			{% else %}
 				<p>没有分类可以显示</p>
